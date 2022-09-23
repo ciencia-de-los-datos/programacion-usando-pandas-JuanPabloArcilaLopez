@@ -22,6 +22,8 @@ def pregunta_01():
     40
 
     """
+    tb10.shape[0]
+    
     return
 
 
