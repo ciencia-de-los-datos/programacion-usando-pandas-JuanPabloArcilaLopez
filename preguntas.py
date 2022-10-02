@@ -231,6 +231,7 @@ def pregunta_12():
     data['lista']=data['_c5a']+':'+data['_c5b'].apply(str)
     data=data.sort_values('lista')
     data2=data.groupby('_c0')['lista'].apply(','.join).reset_index()
+    
     return data2
 
 
