@@ -104,8 +104,9 @@ def pregunta_06():
 
     """
     df = pd.read_csv("tbl1.tsv", sep="\t")
-    lista= [x.upper() for x in df['_c4'].unique()]
-    return (sorted(lista))
+    l = [ x.upper() for x in df['_c4'].unique()]
+    l = sorted(l)
+    return (l)
 
 
 def pregunta_07():
