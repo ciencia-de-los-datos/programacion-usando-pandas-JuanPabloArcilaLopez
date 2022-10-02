@@ -54,7 +54,8 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
+    df = tbl0.groupby(['_c1'])['_c1'].count()
+    return df
 
 
 def pregunta_04():
