@@ -35,7 +35,7 @@ def pregunta_02():
     4
 
     """
-    columnas=df.shape[0]
+    columnas=len(tbl0.axes[1])
     return columnas
 
 
