@@ -181,16 +181,12 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    df = pd.read_csv("tbl0.tsv", sep="\t")
-    a = df.groupby('_c1')['_c2'].apply(list)
-    a = a.reset_index()
-    a.columns = ['_c0', 'lista']
-    s = ':'
-    for index, row in a.iterrows():
-        row['lista'] = sorted(row['lista'])
-        row['lista'] = [str(x) for x in row['lista']]
-        row['lista'] = s.join(row['lista'])
-    return a
+    tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
+    x = tbl0.filter(items=('_c1','_c3'))
+    x = tbl0.sort_values('_c2')
+    x['_c2'] = x['_c2'].astype(str)
+    x = x.groupby('_c1').agg({'_c2':':'.join})
+    return x
 
 
 def pregunta_11():
@@ -209,16 +205,10 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    df = pd.read_csv("tbl1.tsv", sep="\t")
-    a = df.groupby('_c0')['_c4'].apply(list)
-    a = a.reset_index()
-    a.columns = ['_c0', 'lista']
-    s = ','
-    for index, row in a.iterrows():
-        row['lista'] = [str(x) for x in sorted(row['lista'])]
-        row['lista'] = s.join(row['lista'])
-        a.loc[index, 'lista'] = row['lista']
-    return a
+    tbl1 = pd.read_csv("tbl1.tsv", sep="\t")
+    x = tbl1.sort_values('_c4')
+    x = x.groupby(['_c0'], as_index=False).agg({'_c4':','.join})
+    return x
 
 def pregunta_12():
     """
@@ -235,17 +225,12 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    df = pd.read_csv("tbl2.tsv", sep="\t")
-    a = df.groupby('_c0')[['_c5a', '_c5b']].apply(lambda g: list(map(tuple, g.values.tolist())))
-    a = a.reset_index()
-    a.columns = ['_c0', 'lista']
-    s = ','
-    for index, row in a.iterrows():
-        row['lista'] = [x[0]+':'+str(x[1]) for x in sorted(row['lista'])]
-        row['lista'] = s.join(row['lista'])
-        a.loc[index, 'lista'] = row['lista']
-    
-    return a
+    tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
+    d = [(i[1]+':'+str(i[2])) for i in tbl2.values]
+    x = tbl2.assign(_c5 = d)
+    x = x.sort_values('_c5')
+    c = x.groupby(['_c0'], as_index=False).agg({'_c5':','.join}) 
+    return c
 
 
 def pregunta_13():
