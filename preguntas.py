@@ -70,7 +70,9 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+    df = pd.read_csv("tbl0.tsv", sep="\t")[['_c1', '_c2']]
+    df = tbl0.groupby(['_c1']).mean ()['_c2']
+    return df
 
 
 def pregunta_05():
