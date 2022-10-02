@@ -35,7 +35,8 @@ def pregunta_02():
     4
 
     """
-    return
+    columnas=df.shape[0]
+    return columnas
 
 
 def pregunta_03():
