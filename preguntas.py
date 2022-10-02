@@ -181,12 +181,15 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    data= pd.read_csv("tbl0.tsv", sep="\t")
-    data=data.sort_values(by='_c2')
-    data['_c2']=data['_c2'].apply(str)
-    data2=data.groupby('_c1')['_c2'].apply(':'.join).reset_index()
-    data2=data2.rename(columns={'_c1':'_c0','_c2':'_c1'})
-    return data2
+    a = df.groupby('_c1')['_c2'].apply(list)
+    a = a.reset_index()
+    a.columns = ['_c0', 'lista']
+    s = ':'
+    for index, row in a.iterrows():
+        row['lista'] = sorted(row['lista'])
+        row['lista'] = [str(x) for x in row['lista']]
+        row['lista'] = s.join(row['lista'])
+    return a
 
 
 def pregunta_11():
