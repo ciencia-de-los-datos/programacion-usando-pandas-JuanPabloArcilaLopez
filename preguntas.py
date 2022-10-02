@@ -205,12 +205,11 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    data= pd.read_csv("tbl0.tsv", sep="\t")
+    data=pd.read_csv('tbl1.tsv',sep='\t')
     data=data.sort_values(by='_c4')
     data2=data.groupby('_c0')['_c4'].apply(','.join).reset_index()
     data2=data2.rename(columns={'_c4':'lista'})
     return data2
-
 
 def pregunta_12():
     """
