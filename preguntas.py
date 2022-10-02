@@ -205,11 +205,11 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    data=pd.read_csv('tbl1.tsv',sep='\t')
-    data=data.sort_values(by='_c4')
-    data2=data.groupby('_c0')['_c4'].apply(','.join).reset_index()
-    data2=data2.rename(columns={'_c4':'lista'})
-    return data2
+    datan=pd.read_csv('tbl1.tsv',sep='\t')
+    datan=datan.sort_values(by='_c4')
+    datan2=datan.groupby('_c0')['_c4'].apply(','.join).reset_index()
+    datan2=datan2.rename(columns={'_c4':'lista'})
+    return datan2
 
 def pregunta_12():
     """
