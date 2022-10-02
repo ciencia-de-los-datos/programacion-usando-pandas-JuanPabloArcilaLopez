@@ -22,9 +22,9 @@ def pregunta_01():
     40
 
     """
-    tb10.shape[0]
+    filas=tb10.shape[0]
     
-    return
+    return filas
 
 
 def pregunta_02():
