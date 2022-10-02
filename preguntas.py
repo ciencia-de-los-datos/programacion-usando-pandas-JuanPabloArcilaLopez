@@ -35,7 +35,8 @@ def pregunta_02():
     4
 
     """
-    columnas=len(tbl0.axes[1])
+    df = pd.read_csv("tbl0.tsv", sep="\t")
+    columnas=df.shape[1]
     return columnas
 
 
