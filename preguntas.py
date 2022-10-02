@@ -185,7 +185,6 @@ def pregunta_10():
     data=data.sort_values(by='_c2')
     data['_c2']=data['_c2'].apply(str)
     data2=data.groupby('_c1')['_c2'].apply(':'.join).reset_index()
-    data2=data2.rename(columns={'_c1':'_c0','_c2':'lista'})
     return data2
 
 
